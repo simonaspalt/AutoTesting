@@ -5,82 +5,93 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+
+import java.awt.color.ICC_ColorSpace;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 
 public class TestClass1 {
-//    @BeforeTest
-//    public  void WebDriverSetUp(){
-//        _globalDriver = new ChromeDriver();
-//    }
+     WebDriver _globalDriver;
 
 
 
-     @Test
-    public void testUploadNewAd(){
-          ChromeDriver driver = new ChromeDriver();
-
-          driver.get("https://elenta.lt");
-          WebElement cookieButton = driver.findElement(By.xpath("/html/body/div[5]/div[2]/div[1]/div[2]/div[2]/button[1]/p"));
-          cookieButton.click();
-
-          WebElement loginButton = driver.findElement(By.xpath("/html/body/div[2]/div[1]/div[2]/div/a[3]"));
-          loginButton.click();
-
-          driver.findElement(By.id("UserName")).sendKeys("belekoks");
-          driver.findElement(By.id("Password")).sendKeys("Belekoks@23");
-          driver.findElement(By.xpath("/html/body/div[1]/form/fieldset/table/tbody/tr[4]/td[2]/input")).click();
-
-          driver.findElement(By.id("submit-new-ad-nav-button")).click();
-
-          WebElement cattegory = driver.findElement(By.xpath("/html/body/div[1]/ul/li[1]/a"));
-          cattegory.click();
-
-          WebElement subCattegory = driver.findElement(By.xpath("/html/body/div[1]/ul/li[1]/a"));
-          subCattegory.click();
-
-          driver.findElement(By.id("title")).sendKeys(generateUserName());
-          driver.findElement(By.id("text")).sendKeys(generateUserName() + " " + generateUserName() + " " + generateUserName() + generateUserName());
-          driver.findElement(By.id("price")).sendKeys("15");
-          driver.findElement(By.id("location-search-box")).sendKeys("Vilnius");
-          driver.findElement(By.id("phone")).sendKeys("+370666684666");
-          driver.findElement(By.id("email")).sendKeys(generateRandomEmail());
-
-          driver.findElement(By.id("submit-button")).click(); }
+    @BeforeTest
+    public  void WebDriverSetUp(){
+        _globalDriver = new ChromeDriver();
+   }
 
 
+    @Test
+    public void testUploadNewAd() {
 
-          try {
-        TimeUnit.SECONDS.sleep(5);
-    }  catch (InterruptedException e){
-               e.printStackTrace();
+
+        _globalDriver.get("https://elenta.lt");
+        WebElement cookieButton = _globalDriver.findElement(By.xpath("/html/body/div[5]/div[2]/div[1]/div[2]/div[2]/button[1]/p"));
+        cookieButton.click();
+
+        WebElement loginButton = _globalDriver.findElement(By.xpath("/html/body/div[2]/div[1]/div[2]/div/a[3]"));
+        loginButton.click();
+
+        _globalDriver.findElement(By.id("UserName")).sendKeys("belekoks");
+        _globalDriver.findElement(By.id("Password")).sendKeys("Belekoks@23");
+        _globalDriver.findElement(By.xpath("/html/body/div[1]/form/fieldset/table/tbody/tr[4]/td[2]/input")).click();
+
+        _globalDriver.findElement(By.id("submit-new-ad-nav-button")).click();
+
+        WebElement cattegory = _globalDriver.findElement(By.xpath("/html/body/div[1]/ul/li[1]/a"));
+        cattegory.click();
+
+        WebElement subCattegory = _globalDriver.findElement(By.xpath("/html/body/div[1]/ul/li[1]/a"));
+        subCattegory.click();
+
+        _globalDriver.findElement(By.id("title")).sendKeys(generateUserName());
+        _globalDriver.findElement(By.id("text")).sendKeys(generateUserName() + " " + generateUserName() + " " + generateUserName() + generateUserName());
+        _globalDriver.findElement(By.id("price")).sendKeys("15");
+        _globalDriver.findElement(By.id("location-search-box")).sendKeys("Vilnius");
+        _globalDriver.findElement(By.id("phone")).sendKeys("+370666684666");
+        _globalDriver.findElement(By.id("email")).sendKeys(generateRandomEmail());
+
+        _globalDriver.findElement(By.id("submit-button")).click();
     }
 
 
 
-    @Test
-    public void testELentosregistration() {//jei atidaro teising
-         ChromeDriver driver = new ChromeDriver();
+//       try
+//
+//    {
+//        TimeUnit.SECONDS.sleep(5);
+//    }  catch(
+//    InterruptedException e)
+//
+//    {
+//        e.printStackTrace();
+//    }
+//
 
-         driver.get("https://elenta.lt");
-         WebElement cookieButton = driver.findElement(By.xpath("/html/body/div[5]/div[2]/div[1]/div[2]/div[2]/button[1]/p"));
+
+    @Test
+    public void testELentosregistration() {
+
+
+         _globalDriver.get("https://elenta.lt");
+         WebElement cookieButton = _globalDriver.findElement(By.xpath("/html/body/div[5]/div[2]/div[1]/div[2]/div[2]/button[1]/p"));
          cookieButton.click();
 
-        WebElement login = driver.findElement(By.xpath("/html/body/div[2]/div[1]/div[2]/div/a[3]"));
+        WebElement login = _globalDriver.findElement(By.xpath("/html/body/div[2]/div[1]/div[2]/div/a[3]"));
         login.click();
 
-        WebElement register = driver.findElement(By.xpath("/html/body/div[1]/form/fieldset/table/tbody/tr[10]/td/p/a"));
+        WebElement register = _globalDriver.findElement(By.xpath("/html/body/div[1]/form/fieldset/table/tbody/tr[10]/td/p/a"));
         register.click();
 
-        driver.findElement(By.id("UserName")).sendKeys(generateUserName());
-        driver.findElement(By.id("Email")).sendKeys(generateRandomEmail());
-        driver.findElement(By.id("Password")).sendKeys("Belekoks@23");
-        driver.findElement(By.id("Password2")).sendKeys("Belekoks@23");
+        _globalDriver.findElement(By.id("UserName")).sendKeys(generateUserName());
+        _globalDriver.findElement(By.id("Email")).sendKeys(generateRandomEmail());
+        _globalDriver.findElement(By.id("Password")).sendKeys("Belekoks@23");
+        _globalDriver.findElement(By.id("Password2")).sendKeys("Belekoks@23");
         String registruotis = new String ("/html/body/div[1]/form/fieldset/table/tbody/tr[11]/td[2]/input");
-        WebElement registration = driver.findElement(By.xpath(registruotis));
+        WebElement registration = _globalDriver.findElement(By.xpath(registruotis));
         registration.click();
-        WebElement valifdationText = driver.findElement(By.xpath("/html/body/div[1]/div[2]/h1/b"));
+        WebElement valifdationText = _globalDriver.findElement(By.xpath("/html/body/div[1]/div[2]/h1/b"));
         Assert.assertEquals( valifdationText.getText(), "Jūs sėkmingai prisiregistravote!");
         
 
@@ -126,26 +137,26 @@ public class TestClass1 {
 
     @Test
     public void test11() {
-          ChromeDriver driver = new ChromeDriver();
 
-          driver.get("https://elenta.lt");
-          WebElement cookieButton = driver.findElement(By.xpath("/html/body/div[5]/div[2]/div[1]/div[2]/div[2]/button[1]/p"));
+
+          _globalDriver.get("https://elenta.lt");
+          WebElement cookieButton = _globalDriver.findElement(By.xpath("/html/body/div[5]/div[2]/div[1]/div[2]/div[2]/button[1]/p"));
           cookieButton.click();
 
-         WebElement login = driver.findElement(By.xpath("/html/body/div[2]/div[1]/div[2]/div/a[3]"));
+         WebElement login = _globalDriver.findElement(By.xpath("/html/body/div[2]/div[1]/div[2]/div/a[3]"));
          login.click();
 
-         WebElement register = driver.findElement(By.xpath("/html/body/div[1]/form/fieldset/table/tbody/tr[10]/td/p/a"));
+         WebElement register = _globalDriver.findElement(By.xpath("/html/body/div[1]/form/fieldset/table/tbody/tr[10]/td/p/a"));
          register.click();
 
          //driver.findElement(By.id("UserName")).sendKeys();
-         driver.findElement(By.id("Email")).sendKeys(generateRandomEmail());
-         driver.findElement(By.id("Password")).sendKeys("Belekoks@23");
-         driver.findElement(By.id("Password2")).sendKeys("Belekoks@23");
+         _globalDriver.findElement(By.id("Email")).sendKeys(generateRandomEmail());
+         _globalDriver.findElement(By.id("Password")).sendKeys("Belekoks@23");
+         _globalDriver.findElement(By.id("Password2")).sendKeys("Belekoks@23");
          String registruotis = new String ("/html/body/div[1]/form/fieldset/table/tbody/tr[11]/td[2]/input");
-         WebElement registration = driver.findElement(By.xpath(registruotis));
+         WebElement registration = _globalDriver.findElement(By.xpath(registruotis));
          registration.click();
-         WebElement valifdationText = driver.findElement(By.xpath("/html/body/div[1]/div[2]/h1/b"));
+         WebElement valifdationText = _globalDriver.findElement(By.xpath("/html/body/div[1]/div[2]/h1/b"));
          Assert.assertEquals(valifdationText.getText(), "Jūs sėkmingai prisiregistravote!");
 
 
